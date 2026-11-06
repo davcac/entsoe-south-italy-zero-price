@@ -1,0 +1,220 @@
+=== AVVIO 19/10/2026 14:33:47 ===
+Resoconto: .\log\12_esito_2026-10-19_14-33-47.txt
+
+Token letto: 36 caratteri
+
+############ FASE 1 - flussi fisici reali (A11) ############
+  finestra: 15/10 00:00 -> 19/10 00:00 ora italiana
+  SUD -> CSUD   
+     HTTP 200 | 44298 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 351
+  CSUD -> SUD   
+     HTTP 200 | 6256 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 40
+  SUD -> CALA   
+     HTTP 200 | 18464 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 141
+  CALA -> SUD   
+     HTTP 200 | 33807 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 267
+  CALA -> SICI  
+     HTTP 200 | 37729 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 298
+  SICI -> CALA  
+     HTTP 200 | 12888 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 95
+  SUD -> GR     
+     HTTP 200 | 5741 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 37
+  GR -> SUD     
+     HTTP 200 | 6089 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 40
+  SUD -> ME     
+     HTTP 200 | 984 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - No matching data found for Data item NET_CROSS_BORDER_PHYSICAL_FLOWS_R3 [12.1.G] (10YCS-CG-TSO---S, 10Y1001A1001A788) and interval 2026-10-14T22:00:00Z/2026-10-18T22:00:00Z.
+  ME -> SUD     
+     HTTP 200 | 984 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - No matching data found for Data item NET_CROSS_BORDER_PHYSICAL_FLOWS_R3 [12.1.G] (10Y1001A1001A788, 10YCS-CG-TSO---S) and interval 2026-10-14T22:00:00Z/2026-10-18T22:00:00Z.
+  SICI -> MT    
+     HTTP 200 | 37252 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 303
+  MT -> SICI    
+     HTTP 200 | 1509 byte
+     tipo documento: Publication_MarketDocument
+     TimeSeries: 1 | Point: 1
+  -> salvati 10 file su 12
+
+############ FASE 2 - manutenzioni della rete (A78) ############
+  HTTP 200 | 1843 byte
+  salvato (compresso): 12_A78_2026-10-19_14-33-47.zip
+  dentro lo zip: 001-UNAVAILABILITY_IN_TRANSMISSION_GRID_202610011400-202610242300.xml | 2057 byte
+     estratto in: 12_A78_2026-10-19_14-33-47_1.xml
+     tipo documento: Unavailability_MarketDocument
+     TimeSeries: 1
+     campi di ogni TimeSeries: Available_Period, businessType, curveType, end_DateAndOrTime.date, end_DateAndOrTime.time, in_Domain.mRID, mRID, out_Domain.mRID, quantity_Measure_Unit.name, start_DateAndOrTime.date, start_DateAndOrTime.time
+     mRID della prima: 1
+  dentro lo zip: 002-UNAVAILABILITY_IN_TRANSMISSION_GRID_202610120600-202610231400.xml | 2056 byte
+     estratto in: 12_A78_2026-10-19_14-33-47_2.xml
+     tipo documento: Unavailability_MarketDocument
+     TimeSeries: 1
+     campi di ogni TimeSeries: Available_Period, businessType, curveType, end_DateAndOrTime.date, end_DateAndOrTime.time, in_Domain.mRID, mRID, out_Domain.mRID, quantity_Measure_Unit.name, start_DateAndOrTime.date, start_DateAndOrTime.time
+     mRID della prima: 1
+
+############ FASE 3 - indisponibilita' degli impianti (A80) ############
+  finestre di 3 ore, 08:00-18:00 del 16 e 17 ottobre
+  zona SUD
+    16/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1132) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1137) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1122) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 17:00 17:00-20:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1058) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1018) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1023) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1020) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 17:00 17:00-20:00
+     HTTP 400 | 939 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (974) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+  zona CALA
+    16/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1132) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1137) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1122) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 17:00 17:00-20:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1058) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1018) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1023) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1020) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 17:00 17:00-20:00
+     HTTP 400 | 939 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (974) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+  zona SICI
+    16/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1132) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1137) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1122) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    16/10 17:00 17:00-20:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1058) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 08:00 08:00-11:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1018) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 11:00 11:00-14:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1023) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 14:00 14:00-17:00
+     HTTP 400 | 940 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (1020) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+    17/10 17:00 17:00-20:00
+     HTTP 400 | 939 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The number of instances (974) exceeds the allowed maximum (200) for data item UNAVAILABILITY_OF_PRODUCTION_AND_GENERATION_UNITS.
+     (troppi record in 3 ore: la finestra va accorciata)
+  -> salvati 0 file
+
+############ FASE 4 - capacita' installata per zona (A68), prova ############
+  variante 'processType A33'
+     HTTP 200 | 975 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - No matching data found for Data item INSTALLED_GENERATION_CAPACITY_AGGREGATED_R3 [14.1.A] (10Y1001A1001A788) and interval 2026-10-14T22:00:00Z/2026-10-18T22:00:00Z.
+  variante 'processType A16'
+     HTTP 400 | 882 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - The provided parameters do not match the dataItem parameters or values.
+  variante 'senza processType'
+     HTTP 400 | 854 byte
+     tipo documento: Acknowledgement_MarketDocument
+     RIFIUTATO: 999 - Mandatory parameter ProcessType is missing.
+  nessuna variante accettata: la capacita' installata non e' disponibile cosi'
+
+=== RIEPILOGO ===
+  flussi A11   : 12 coppie di confini
+  manutenzioni : file 12_A78_2026-10-19_14-33-47.zip (+ XML estratti)
+  impianti A80 : 3 zone x 2 giorni x finestre da 3 ore
+=== FINE ===

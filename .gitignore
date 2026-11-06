@@ -1,0 +1,21 @@
+# Le chiavi API non devono MAI finire in un repository pubblico.
+# Se un segreto viene committato, cancellare il file non basta:
+# resta nella cronologia per sempre.
+*.env
+secrets*.env
+
+# Le risposte grezze di ENTSO-E e le tabelle di Terna: si riscaricano,
+# non si versionano. In log/ ci sono i report di testo, i CSV e i grafici,
+# che sono la parte leggibile del lavoro.
+*.xml
+*.xlsx
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# Windows / editor
+Thumbs.db
+.vscode/
+.idea/

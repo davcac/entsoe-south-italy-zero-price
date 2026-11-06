@@ -1,0 +1,72 @@
+=== AVVIO 19/10/2026 10:17:07 ===
+Resoconto: .\log\05_esito_2026-10-19_10-17-07.txt
+
+File letto: 04_prezzi_2026-10-19_10-05-14.csv
+(e' il piu' recente fra 1 file di prezzi trovati)
+
+La tabella ha 2016 righe e 5 colonne
+Colonne: ['zona', 'codice_eic', 'ora_utc', 'ora_italiana', 'prezzo_eur_mwh']
+
+Prime 5 righe (mostro 3 colonne su 5, altrimenti non ci stanno):
+      zona      ora_italiana  prezzo_eur_mwh
+0  IT Nord  2026-10-16 00:00          244.78
+1  IT Nord  2026-10-16 00:15          236.45
+2  IT Nord  2026-10-16 00:30          232.48
+3  IT Nord  2026-10-16 00:45          225.48
+4  IT Nord  2026-10-16 01:00          225.30
+
+Tipi di dato:
+zona                  str
+codice_eic            str
+ora_utc               str
+ora_italiana          str
+prezzo_eur_mwh    float64
+dtype: object
+
+Le zone presenti sono 7 :
+['IT Calabria', 'IT Centro-Nord', 'IT Centro-Sud', 'IT Nord', 'IT Sardegna', 'IT Sicilia', 'IT Sud']
+
+Prezzo medio per zona (EUR/MWh):
+zona
+IT Centro-Nord    233.24
+IT Nord           233.24
+IT Centro-Sud     232.39
+IT Sicilia        220.53
+IT Sardegna       219.54
+IT Calabria       216.66
+IT Sud            216.66
+Name: prezzo_eur_mwh, dtype: float64
+
+Questi numeri devono combaciare con la tabella RIEPILOGO dello
+script 04: se combaciano, il riempimento dei quarti d'ora e' corretto.
+
+Prezzo medio per ora del giorno (tutte le zone, tutti i giorni):
+   0:00   237.78  #######################
+   1:00   225.28  ######################
+   2:00   218.75  #####################
+   3:00   212.11  #####################
+   4:00   212.21  #####################
+   5:00   216.41  #####################
+   6:00   246.60  ########################
+   7:00   272.38  ###########################
+   8:00   250.27  #########################
+   9:00   241.25  ########################
+  10:00   185.16  ##################
+  11:00   165.96  ################
+  12:00   160.08  ################
+  13:00   152.00  ###############
+  14:00   152.38  ###############
+  15:00   169.18  ################
+  16:00   233.76  #######################
+  17:00   259.82  #########################
+  18:00   276.12  ###########################
+  19:00   280.39  ############################
+  20:00   282.66  ############################
+  21:00   268.34  ##########################
+  22:00   248.47  ########################
+  23:00   223.22  ######################
+
+Ora piu' economica: 13 -> 152.0 EUR/MWh
+Ora piu' cara     : 20 -> 282.66 EUR/MWh
+
+FINE: esecuzione conclusa senza errori.

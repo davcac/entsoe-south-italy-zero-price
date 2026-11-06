@@ -1,0 +1,71 @@
+=== AVVIO 19/10/2026 14:49:00 ===
+Resoconto: .\log\13_esito_2026-10-19_14-49-00.txt
+
+File: 10 flussi, 2 manutenzioni, 7 carico, 7 generazione, 1 prezzi
+
+############ 1) MANUTENZIONI DELLA RETE (A78) ############
+  documento 12_A78_2026-10-19_14-33-47_1.xml | creato il 2026-09-23T16:43:41Z
+    confine: IT Sud <-> IT Calabria | tipo (businessType): A53
+    periodo dichiarato: 01/10 14:00 -> 24/10 23:00 (UTC)
+    capacita' disponibile dichiarata: 2000 MAW
+  documento 12_A78_2026-10-19_14-33-47_2.xml | creato il 2026-06-17T13:55:12Z
+    confine: IT Sud <-> IT Calabria | tipo (businessType): A53
+    periodo dichiarato: 12/10 06:00 -> 23/10 14:00 (UTC)
+    capacita' disponibile dichiarata: 600 MAW
+
+
+############ 2) FLUSSI FISICI REALI A MEZZOGIORNO (11:00-15:00) ############
+positivo = verso l'etichetta (SUD -> CSUD significa verso il Centro-Sud)
+  confine        giorno  medio  minimo  massimo  
+  SUD -> CSUD    10-16   2338   1904    2711     
+  SUD -> CSUD    10-17   1697   1394    1842     
+  CALA -> SUD    10-16   536    195     871      
+  CALA -> SUD    10-17   -210   -414    -87      
+  SICI -> CALA   10-16   219    -232    698      
+  SICI -> CALA   10-17   -353   -607    -226     
+  SUD -> GRECIA  10-16   414    181     502      
+  SUD -> GRECIA  10-17   -493   -493    -493     
+  SICI -> MALTA  10-16   78     67      94       
+  SICI -> MALTA  10-17   96     80      113      
+
+############ 3) IL CORRIDOIO SUD -> CSUD: DOVE SI FERMA ############
+  massimo flusso SUD -> CSUD su tutti i 4 giorni: 3542 MW il 16/10 09:15
+  flusso medio sui 4 giorni: 1442 MW
+
+############ 4) IL TETTO: IL SURPLUS CRESCE, IL FLUSSO NO ############
+(i 12 quarti d'ora con il surplus piu' alto dei 4 giorni)
+  quando       surplus macro  SUD->CSUD  CALA->SUD  SICI->CALA  SUD->GR  SICI->MT  prezzo Sud  
+  16/10 13:00  4417           2711       761        414         491      67        0.00        
+  16/10 12:45  4281           2635       693        393         nan      67        0.00        
+  16/10 12:30  4139           2487       668        359         nan      73        0.00        
+  16/10 12:15  3983           2330       582        290         nan      73        0.00        
+  15/10 11:00  3959           2957       275        208         -159     0         nan         
+  16/10 13:45  3943           2245       321        -129        nan      70        0.00        
+  16/10 13:30  3862           2164       364        -63         nan      70        0.00        
+  16/10 14:00  3832           2181       328        -99         502      72        0.00        
+  16/10 13:15  3829           2128       453        54          nan      69        0.00        
+  15/10 10:45  3798           2719       209        100         nan      0         nan         
+  16/10 14:15  3714           2060       264        -136        nan      76        0.00        
+  15/10 10:30  3684           2581       280        220         nan      0         nan         
+
+############ 4b) IL CORRIDOIO NEI QUARTI D'ORA A PREZZO ~0 ############
+  quarti d'ora a prezzo < 1 EUR/MWh sulla zona IT Sud: 21
+  dal 16/10 10:30 al 16/10 15:30 (ora italiana)
+  flusso SUD -> CSUD in quei quarti: medio 2316 | minimo 1778 | massimo 2856 MW
+  surplus della macrozona in quei quarti: medio 3437 | massimo 4417 MW
+  massimo flusso SUD -> CSUD su tutti i 4 giorni: 3542 MW il 16/10 09:15
+
+############ 5) CONFINE SUD <-> CALABRIA E I 600 MW DICHIARATI ############
+  flusso netto CALA -> SUD: massimo 1750 MW (15/10 17:15) | medio 332 MW
+    2026-10-16 11:00-15:00: medio 536 | massimo 871 MW
+    2026-10-17 11:00-15:00: medio -210 | massimo -87 MW
+  flusso netto SICI -> CALA: massimo 956 MW | medio -517 MW
+
+############ 6) BILANCIO: surplus della macrozona contro flussi uscenti ############
+la macrozona Sud+Calabria+Sicilia esce solo da: SUD->CSUD, SUD->GRECIA, SICI->MALTA
+  giorno      surplus macro  SUD->CSUD  SUD->GRECIA  SICI->MALTA  uscite totali  differenza  
+  2026-10-16  3645           2338       414          78           2830           815         
+  2026-10-17  1796           1697       -493         96           1300           496         
+  2026-10-18  2045           1996       0            82           2078           -32         
+
+=== FINE ===

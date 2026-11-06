@@ -1,0 +1,39 @@
+=== AVVIO 19/10/2026 14:51:33 ===
+
+############ A) MANUTENZIONI: VALORI ESATTI ############
+  IT Sud -> IT Calabria | 01/10 14:00 -> 24/10 23:00 UTC | disponibile: 2000 MAW | tipo A53 | risoluzione PT1M
+  IT Sud -> IT Calabria | 12/10 06:00 -> 23/10 14:00 UTC | disponibile: 600 MAW | tipo A53 | risoluzione PT1M
+
+############ B) LO SCATTO: 16/10 DALLE 10:00 ALLE 11:00 ############
+  ora    prezzo Sud  SUD->CSUD  SUD->GRECIA  CALA->SUD  SICI->CALA  
+  10:00  201.23      2743       -485         607        357         
+  10:15  157.50      2627       nan          484        312         
+  10:30  0.10        2712       nan          488        388         
+  10:45  0.00        2856       nan          549        442         
+  11:00  0.04        2611       181          626        501         
+
+############ C) IDROELETTRICO IN POMPAGGIO (B10) A MEZZOGIORNO ############
+  giorno      zona           quarti  B10 minimo  B10 massimo  
+  2026-10-16  IT Centro-Sud  16      3           53           
+  2026-10-16  IT Sicilia     16      0           615          
+  2026-10-17  IT Centro-Sud  16      1           1            
+  2026-10-17  IT Sicilia     16      144         312          
+
+############ D) BILANCIO PER QUARTO D'ORA (16/10) ############
+  ora    surplus macro  di cui pompaggio B10  uscite totali  residuo  
+  09:00  3150           0                     3207           -57      
+  09:30  2775           0                     3282           -507     
+  10:00  2317           0                     2373           -56      
+  10:30  2307           0                     2817           -510     
+  11:00  2856           0                     2886           -30      
+  11:30  2817           0                     2666           151      
+  12:00  3639           409                   2909           730      
+  12:30  4139           588                   2560           1579     
+  13:00  4417           615                   3269           1148     
+  13:30  3862           612                   2234           1628     
+  14:00  3832           582                   2755           1077     
+  14:30  3669           578                   2095           1574     
+  15:00  3240           457                   2378           862      
+  15:30  2852           144                   2096           756      
+
+=== FINE ===

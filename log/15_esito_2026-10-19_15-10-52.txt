@@ -1,0 +1,22 @@
+=== GRAFICI 15 | 19/10/2026 15:10:52 ===
+
+Carico      : 7 file
+Generazione : 7 file
+Flussi      : 10 file
+Prezzi      : 04_prezzi_2026-10-19_10-05-14.csv
+
+############ A) MEDIE 11:00-15:00 (MW; prezzi in EUR/MWh) ############
+  giorno  solare  eolico  resto  carico  surplus  SUD->CSUD  prezzo Sud  
+  16/10   4242    2790    1144   4530    3645     2338       0           
+  17/10   4200    253     1494   4151    1796     1697       191         
+  18/10   4394    227     795    3372    2045     1996       193         
+
+############ B) QUARTI D'ORA CON PREZZO SUD <= 1 EUR/MWh ############
+  dal Fri 16/10 10:30 al 15:30
+  in totale: 21 quarti d'ora
+  corridoio SUD->CSUD  : medio 2316 | minimo 1778 | massimo 2856 MW
+  surplus macrozona Sud: medio 3437 | massimo 4417 MW
+
+Immagine salvata: .\log\15_grafici_2026-10-19_15-10-52.png
+
+=== FINE ===

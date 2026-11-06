@@ -1,0 +1,87 @@
+{
+  "warnings": [
+    {
+      "warning": "incomplete return",
+      "description": "The API can only return 5000 rows in JSON format.  Please consider constraining your request with facet, start, or end, or using offset to paginate results."
+    }
+  ],
+  "response": {
+    "total": "307",
+    "dateFormat": "YYYY-MM",
+    "frequency": "monthly",
+    "data": [
+      {
+        "period": "2026-07",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "17",
+        "price-units": "cents per kilowatt-hour"
+      },
+      {
+        "period": "2026-06",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "17.13",
+        "price-units": "cents per kilowatt-hour"
+      },
+      {
+        "period": "2026-05",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "16.16",
+        "price-units": "cents per kilowatt-hour"
+      },
+      {
+        "period": "2026-04",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "16.54",
+        "price-units": "cents per kilowatt-hour"
+      },
+      {
+        "period": "2026-03",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "16.74",
+        "price-units": "cents per kilowatt-hour"
+      }
+    ],
+    "description": "Electricity sales to ultimate customer by state and sector (number of customers, average price, revenue, and megawatthours of sales).  \n    Sources: Forms EIA-826, EIA-861, EIA-861M"
+  },
+  "request": {
+    "command": "/v2/electricity/retail-sales/data/",
+    "params": {
+      "frequency": "monthly",
+      "data": [
+        "price"
+      ],
+      "facets": {
+        "stateid": [
+          "CO"
+        ],
+        "sectorid": [
+          "RES"
+        ]
+      },
+      "sort": [
+        {
+          "column": "period",
+          "direction": "desc"
+        }
+      ],
+      "length": "5"
+    }
+  },
+  "apiVersion": "2.1.14",
+  "ExcelAddInVersion": "2.1.0"
+}

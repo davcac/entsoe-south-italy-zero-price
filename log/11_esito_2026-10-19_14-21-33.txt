@@ -1,0 +1,120 @@
+=== AVVIO 19/10/2026 14:21:33 ===
+Resoconto: .\log\11_esito_2026-10-19_14-21-33.txt
+
+Carico  : 7 file, lotto 2026-10-19_14-10-50
+Generazi: 7 file
+Vicini  : 6 file
+Prezzi  : 04_prezzi_2026-10-19_10-05-14.csv
+
+Finestra dei dati: 15/10 00:00 -> 18/10 23:45 (ora italiana)
+Passi da 15 minuti: 384 | zone di carico: 7
+Colonne dei prezzi: ['IT Calabria', 'IT Centro-Nord', 'IT Centro-Sud', 'IT Nord', 'IT Sardegna', 'IT Sicilia', 'IT Sud']
+
+############ 1) CONTROLLO: totali nazionali a mezzogiorno ############
+(somma delle 7 zone; le cifre di riferimento vengono da energy-charts)
+  giorno      solare  eolico  idro  gas   tot gen  carico  
+  2026-10-16  14222   3116    2362  6927  31277    33229   
+  2026-10-17  13593   287     2249  5995  26814    25632   
+  2026-10-18  11803   305     1662  4656  22886    24632   
+
+############ 2) SURPLUS A MEZZOGIORNO (11:00-15:00) ############
+surplus = generazione interna - domanda interna  [MW]
+--- 2026-10-16 ---
+  zona            carico  solare  eolico  idro  gas   altro  tot gen  surplus  prezzo  
+  IT Nord         19429   3806    3       1545  6984  2022   14361    -5067    199     
+  IT Centro-Nord  2963    760     6       18    664   662    2110     -853     199     
+  IT Centro-Sud   5624    2948    460     185   394   369    4356     -1269    199     
+  IT Sud          2280    1653    2314    10    470   164    4610     +2330    0       
+  IT Sicilia      1645    1591    153     359   206   21     2330     +685     0       
+  IT Calabria     604     280     538     12    115   127    1072     +468     0       
+  IT Sardegna     683     730     68      34    0     1215   2048     +1364    140     
+  SUD+CALA+SIC    4530    4242    2790    470   371   304    8175     +3645    0       
+
+--- 2026-10-17 ---
+  zona            carico  solare  eolico  idro  gas   altro  tot gen  surplus  prezzo  
+  IT Nord         13927   3868    4       1659  4307  2004   11842    -2085    192     
+  IT Centro-Nord  2080    782     4       21    512   666    1986     -94      192     
+  IT Centro-Sud   4842    2599    22      150   933   387    4090     -752     191     
+  IT Sud          1960    1846    70      11    1012  143    3081     +1121    191     
+  IT Sicilia      1727    1102    127     159   152   79     1618     -109     191     
+  IT Calabria     464     287     117     12    292   115    823      +359     191     
+  IT Sardegna     632     621     44      62    0     1097   1824     +1192    101     
+  SUD+CALA+SIC    4151    4200    253     292   919   282    5947     +1796    191     
+
+############ 3) QUARTO D'ORA PER QUARTO D'ORA, macrozona SUD ############
+--- 2026-10-16 (Sud + Calabria + Sicilia) ---
+  ora          solare  eolico  idro+gas  tot gen  carico  surplus  prezzo Sud  
+  16/10 09:00  2701    1984    3613      8298     5148    +3150    310.39      
+  16/10 09:30  3411    2050    2357      7818     5043    +2775    243.30      
+  16/10 10:00  3502    2277    1344      7123     4806    +2317    201.23      
+  16/10 10:30  3840    2481    743       7064     4757    +2307    0.10        
+  16/10 11:00  4029    2557    684       7270     4414    +2856    0.04        
+  16/10 11:30  4210    2650    687       7547     4730    +2817    0.00        
+  16/10 12:00  4253    2971    1098      8322     4683    +3639    0.02        
+  16/10 12:30  4315    3234    1289      8838     4699    +4139    0.00        
+  16/10 13:00  4276    3358    1311      8945     4528    +4417    0.00        
+  16/10 13:30  4415    2549    1301      8265     4403    +3862    0.00        
+  16/10 14:00  4314    2532    1273      8119     4287    +3832    0.00        
+  16/10 14:30  4153    2562    1298      8013     4344    +3669    0.00        
+  16/10 15:00  3688    2800    1207      7695     4455    +3240    0.00        
+  16/10 15:30  3251    3023    1060      7334     4482    +2852    0.00        
+
+--- 2026-10-17 (Sud + Calabria + Sicilia) ---
+  ora          solare  eolico  idro+gas  tot gen  carico  surplus  prezzo Sud  
+  17/10 09:00  2372    215     3221      5808     4663    +1145    265.89      
+  17/10 09:30  3147    267     3073      6487     4827    +1660    226.85      
+  17/10 10:00  3623    238     2836      6697     4703    +1994    216.09      
+  17/10 10:30  3969    219     1917      6105     4502    +1603    198.66      
+  17/10 11:00  4292    227     1487      6006     4462    +1544    204.08      
+  17/10 11:30  4254    196     1273      5723     4283    +1440    194.01      
+  17/10 12:00  4422    203     1490      6115     4223    +1892    193.55      
+  17/10 12:30  4397    234     1473      6104     4230    +1874    186.53      
+  17/10 13:00  4375    245     1518      6138     4158    +1980    185.84      
+  17/10 13:30  4338    273     1500      6111     4073    +2038    190.36      
+  17/10 14:00  4032    301     1550      5883     3971    +1912    183.58      
+  17/10 14:30  3693    324     1666      5683     3952    +1731    192.50      
+  17/10 15:00  3278    331     1605      5214     3946    +1268    180.99      
+  17/10 15:30  3045    352     1847      5244     4012    +1232    212.10      
+
+############ 4) LA SOGLIA: surplus della zona Sud contro prezzo ############
+(tutti i quarti d'ora dei 4 giorni; surplus della sola zona IT Sud)
+  quarti d'ora confrontabili (surplus e prezzo insieme): 288
+  classe di surplus [MW]  quarti  prezzo medio  prezzo min  prezzo max  
+  surplus < 0 (deficit)   30      225.73        209.57      263.62      
+  0 - 2.000               235     228.06        0.00        326.42      
+  2.000 - 4.000           23      88.36         0.00        294.76      
+  4.000 - 6.000           0       -             -           -           
+  6.000 - 8.000           0       -             -           -           
+  > 8.000                 0       -             -           -           
+
+Piu' precisamente, sulla zona IT Sud:
+  quarti d'ora con prezzo < 1 EUR/MWh : 21
+  il loro surplus va da 1703 a 2370 MW
+  surplus massimo osservato il 16/10: 2687 MW
+  surplus massimo osservato il 17/10: 1409 MW
+
+Poveri di prezzo per zona (quarti d'ora con prezzo < 1 EUR/MWh):
+  IT Nord          0
+  IT Centro-Nord   0
+  IT Centro-Sud    0
+  IT Sud           21
+  IT Sicilia       21
+  IT Calabria      21
+  IT Sardegna      0
+
+Quarti d'ora al prezzo di 400,00 EUR/MWh esatti (possibile limite di mercato):
+  IT Nord          0
+  IT Centro-Nord   0
+  IT Centro-Sud    0
+  IT Sud           0
+  IT Sicilia       8
+  IT Calabria      0
+  IT Sardegna      0
+
+############ 5) PREZZI DEI VICINI A MEZZOGIORNO (11:00-15:00) ############
+  giorno      IT Sud  Grecia  Francia  Austria  Slovenia  Svizzera  Montenegro  
+  2026-10-16  0.00    11.00   179.33   192.09   187.36    192.76    160.51      
+  2026-10-17  191.38  -0.01   43.05    199.93   192.17    189.89    137.80      
+  2026-10-18  193.11  -0.00   181.40   181.85   182.43    199.29    160.28      
+
+=== FINE ===

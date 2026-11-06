@@ -1,0 +1,32 @@
+=== AVVIO 16/10/2026 17:12:52 ===
+Resoconto      : .\log\03_esito_2026-10-16_17-12-52.txt
+Dati grezzi    : .\log\03_dati_2026-10-16_17-12-52.json
+
+Leggo le chiavi da A:\secrets.env
+  chiavi trovate: 2 -> ['EIA_KEY', 'ENTSOE_TOKEN']
+  (i valori non vengono mai stampati)
+
+Chiave EIA: 40 caratteri
+Lunghezza corretta: procedo.
+
+Chiamo l'API EIA:
+  indirizzo : https://api.eia.gov/v2/electricity/retail-sales/data
+  dati      : price (prezzo al dettaglio)
+  stato     : CO (Colorado)
+  settore   : RES (residenziale)
+  frequenza : monthly (mensile)
+  righe     : 5 (le piu' recenti)
+  stato HTTP: 200
+  dati grezzi salvati: .\log\03_dati_2026-10-16_17-12-52.json
+
+Sezioni della risposta: ['warnings', 'response', 'request', 'apiVersion', 'ExcelAddInVersion']
+Avvisi di EIA: [{'warning': 'incomplete return', 'description': 'The API can only return 5000 rows in JSON format.  Please consider constraining your request with facet, start, or end, or using offset to paginate results.'}]
+Righe ricevute: 5
+Prezzo al dettaglio - Colorado, settore residenziale (centesimi per kWh):
+    2026-07 -> 17 cents per kilowatt-hour
+    2026-06 -> 17.13 cents per kilowatt-hour
+    2026-05 -> 16.16 cents per kilowatt-hour
+    2026-04 -> 16.54 cents per kilowatt-hour
+    2026-03 -> 16.74 cents per kilowatt-hour
+
+FINE: esecuzione conclusa senza errori.

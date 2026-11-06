@@ -1,0 +1,61 @@
+=== GRAFICI 15 | 19/10/2026 17:12:07 ===
+
+Carico      : 7 file
+Generazione : 7 file
+Flussi      : 10 file
+Prezzi      : 04_prezzi_2026-10-19_10-05-14.csv
+Tetti       : 16_limiti_transito_2026-10-19_16-48-45.csv
+
+############ A) MEDIE 11:00-15:00 (MW; prezzi in EUR/MWh) ############
+  giorno  solare  eolico  resto  carico  surplus  SUD->CSUD  tetto SUD->CSUD  prezzo Sud  
+  16/10   4242    2790    1144   4530    3645     2338       2550             0           
+  17/10   4200    253     1494   4151    1796     1697       3000             191         
+  18/10   4394    227     795    3372    2045     1996       3000             193         
+
+############ B) QUARTI D'ORA CON PREZZO SUD <= 1 EUR/MWh ############
+  dal Fri 16/10 10:30 al 15:30
+  in totale: 21 quarti d'ora
+  corridoio SUD->CSUD  : medio 2316 | minimo 1778 | massimo 2856 MW
+  surplus macrozona Sud: medio 3437 | massimo 4417 MW
+
+############ C) TETTO DI TRANSITO TERNA vs FLUSSO FISICO ############
+  giorno  tetto 11-15  flusso 11-15  flusso/tetto  
+  16/10   2550         2338          92%           
+  17/10   3000         1697          57%           
+  18/10   3000         1996          67%           
+
+  Nei 21 quarti d'ora col prezzo Sud a zero:
+    tetto medio       : 2640 MW
+    flusso fisico medio: 2316 MW (88% del tetto)
+    massimo flusso     : 2856 MW (tetto minimo 2400 MW)
+
+  Dettaglio 16/10, ora per ora (MW):
+  ora         tetto       flusso flusso/tetto
+  00:00        3893         1804        46%
+  01:00        3893         2134        55%
+  02:00        3397         2201        65%
+  03:00        3397         2137        63%
+  04:00        3327         2219        67%
+  05:00        3327         1901        57%
+  06:00        3891         2102        54%
+  07:00        3891         2760        71%
+  08:00        3967         3145        79%
+  09:00        3967         3377        85%
+  10:00        3000         2734        91%
+  11:00        2700         2550        94%
+  12:00        2400         2450       102%
+  13:00        2400         2312        96%
+  14:00        2700         2039        76%
+  15:00        3000         1870        62%
+  16:00        3854         2468        64%
+  17:00        3854         2147        56%
+  18:00        3719         2026        54%
+  19:00        3719         1805        49%
+  20:00        3664         1918        52%
+  21:00        3664         1640        45%
+  22:00        4159         1717        41%
+  23:00        4159         1695        41%
+
+Immagine salvata: .\log\15_grafici_2026-10-19_17-12-07.png
+
+=== FINE ===

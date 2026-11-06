@@ -1,0 +1,18 @@
+=== GRAFICI 15 | 19/10/2026 16:51:23 ===
+
+Carico      : 7 file
+Generazione : 7 file
+Flussi      : 10 file
+Prezzi      : 04_prezzi_2026-10-19_10-05-14.csv
+Tetti       : 16_limiti_transito_2026-10-19_16-48-45.csv
+
+Traceback (most recent call last):
+  File ".\15_grafici.py", line 566, in <module>
+    principale()
+    ~~~~~~~~~~^^
+  File ".\15_grafici.py", line 362, in principale
+    tetto = leggi_limiti(file_limiti[-1], "limite_definitivo")
+  File ".\15_grafici.py", line 185, in leggi_limiti
+    tabella = tabella[tabella["serie"] == nome]
+                                          ^^^^
+NameError: name 'nome' is not defined. Did you mean: 'None'?

@@ -1,0 +1,125 @@
+=== AVVIO 19/10/2026 10:05:14 ===
+Resoconto : .\log\04_esito_2026-10-19_10-05-14.txt
+Dati (CSV): .\log\04_prezzi_2026-10-19_10-05-14.csv
+
+Segreti letti da A:\secrets.env -> ['EIA_KEY', 'ENTSOE_TOKEN']
+
+Token ENTSO-E: 36 caratteri
+Finestra richiesta (ora italiana):
+  da 16/10/2026 00:00 a 19/10/2026 00:00
+  (= in UTC: 202610152200 -> 202610182200)
+  zone: 7
+
+--- IT Nord (10Y1001A1001A73I)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Nord_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 278
+    ricostruiti (ripetizione): 10
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 180.99 (17/10 15:00) | max 326.42 (16/10 07:30) | media 233.24
+
+--- IT Centro-Nord (10Y1001A1001A70O)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Centro-Nord_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 278
+    ricostruiti (ripetizione): 10
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 180.99 (17/10 15:00) | max 326.42 (16/10 07:30) | media 233.24
+
+--- IT Centro-Sud (10Y1001A1001A71M)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Centro-Sud_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 277
+    ricostruiti (ripetizione): 11
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 143.68 (16/10 15:00) | max 326.42 (16/10 07:30) | media 232.39
+
+--- IT Sud (10Y1001A1001A788)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Sud_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 265
+    ricostruiti (ripetizione): 23
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 0.0 (16/10 10:45) | max 326.42 (16/10 07:30) | media 216.66
+
+--- IT Sicilia (10Y1001A1001A75E)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Sicilia_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 259
+    ricostruiti (ripetizione): 29
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 0.0 (16/10 10:45) | max 400.0 (17/10 19:00) | media 220.53
+
+--- IT Sardegna (10Y1001A1001A74G)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Sardegna_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 273
+    ricostruiti (ripetizione): 15
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 76.5 (17/10 11:45) | max 326.42 (16/10 07:30) | media 219.54
+
+--- IT Calabria (10Y1001C--00096J)
+  stato HTTP: 200
+  risposta salvata: 04_IT_Calabria_2026-10-19_10-05-14.xml
+  tipo di risposta: text/xml
+  tipo documento: Publication_MarketDocument
+  periodi con posizioni 'rade' (curveType A03): 3 su 3
+    -> le posizioni omesse ripetono il valore precedente
+  passo temporale (minuti): [15]
+  quarti d'ora nella finestra: 288
+    scritti da ENTSO-E      : 265
+    ricostruiti (ripetizione): 23
+    non pubblicati          : 0
+  prezzo EUR/MWh: min 0.0 (16/10 10:45) | max 326.42 (16/10 07:30) | media 216.66
+
+Righe scritte nel CSV: 2016
+
+=== RIEPILOGO (EUR/MWh) ===
+  zona             quarti scritti  ripet.     media      min      max
+  IT Nord             288     278      10    233.24   180.99   326.42
+  IT Centro-Nord      288     278      10    233.24   180.99   326.42
+  IT Centro-Sud       288     277      11    232.39   143.68   326.42
+  IT Sud              288     265      23    216.66     0.00   326.42
+  IT Sicilia          288     259      29    220.53     0.00   400.00
+  IT Sardegna         288     273      15    219.54    76.50   326.42
+  IT Calabria         288     265      23    216.66     0.00   326.42
+
+Nota: 'scritti' sono i valori presenti nel file ENTSO-E; 'ripet.' quelli
+ricostruiti perche' ENTSO-E omette le posizioni con prezzo ripetuto.
+FINE: esecuzione conclusa senza errori.

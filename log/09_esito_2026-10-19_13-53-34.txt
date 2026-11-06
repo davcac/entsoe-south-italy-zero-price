@@ -1,0 +1,82 @@
+=== AVVIO 19/10/2026 13:53:34 ===
+Resoconto: .\log\09_esito_2026-10-19_13-53-34.txt
+Finestra provata: 16/10 00:00 -> 18/10 00:00 ora italiana
+                  202610152200 -> 202610172200 in UTC
+
+Token letto: 36 caratteri
+
+[2026-10-19_13-53-34] A65_NORD_out | outBiddingZone_Domain=10Y1001A1001A73I
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A65_SUD_out | outBiddingZone_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A65_SUD_in | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A75_SUD_in | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A75_SUD_out | outBiddingZone_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A75_NORD_in | in_Domain=10Y1001A1001A73I
+     HTTP 400 | dimensione risposta: 931 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [PROCESS_TYPE=A16] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A11_SUD_verso_CSUD | out_Domain=10Y1001A1001A788 in_Domain=10Y1001A1001A71M
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] A11_SIC_verso_CALA | out_Domain=10Y1001A1001A75E in_Domain=10Y1001C--00096J
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] PROVA_A77_SUD | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] PROVA_A78_SUD | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] PROVA_A79_SUD | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+[2026-10-19_13-53-34] PROVA_A80_SUD | in_Domain=10Y1001A1001A788
+     HTTP 400 | dimensione risposta: 915 byte
+     tipo documento ricevuto: Acknowledgement_MarketDocument
+     RIFIUTATO da ENTSO-E: 999 - The combination of [] is not valid, or the requested data is not allowed to be fetched via this service.
+
+=== SINTESI ===
+  prova                  risultato
+  A65_NORD_out                 risposta senza dati / rifiutata
+  A65_SUD_out                  risposta senza dati / rifiutata
+  A65_SUD_in                   risposta senza dati / rifiutata
+  A75_SUD_in                   risposta senza dati / rifiutata
+  A75_SUD_out                  risposta senza dati / rifiutata
+  A75_NORD_in                  risposta senza dati / rifiutata
+  A11_SUD_verso_CSUD           risposta senza dati / rifiutata
+  A11_SIC_verso_CALA           risposta senza dati / rifiutata
+  PROVA_A77_SUD                risposta senza dati / rifiutata
+  PROVA_A78_SUD                risposta senza dati / rifiutata
+  PROVA_A79_SUD                risposta senza dati / rifiutata
+  PROVA_A80_SUD                risposta senza dati / rifiutata
+FINE: esecuzione conclusa senza errori.
