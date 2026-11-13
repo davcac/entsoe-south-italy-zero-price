@@ -1,0 +1,85 @@
+=== GRAFICI 15 | 12/11/2026 00:40:02 ===
+
+Dataset     : C:\Users\Utente\Desktop\opencode CLI\github\entsoe-repo\data
+Flussi      : cross_border_flows.csv
+Direzionali : cross_border_flows_directional.csv
+Prezzi      : day_ahead_prices.csv
+Limiti      : transit_limits.csv
+
+############ A) MEDIE 11:00-15:00 (MW; prezzi in EUR/MWh) ############
+  giorno  solare  eolico  resto  carico  surplus  SUD->CSUD  limite SUD->CSUD  prezzo Sud  
+  16/10   4242    2790    1144   4530    3645     2338       1624              0           
+  17/10   4200    253     1494   4151    1796     1697       1246              191         
+  18/10   4394    227     795    3372    2045     1996       1533              193         
+
+############ B) QUARTI D'ORA CON PREZZO SUD <= 1 EUR/MWh ############
+  dal Fri 16/10 10:30 al 15:30
+  in totale: 21 quarti d'ora
+  corridoio SUD->CSUD  : medio 2316 | minimo 1778 | massimo 2856 MW
+  surplus macrozona Sud: medio 3437 | massimo 4417 MW
+
+############ C) LIMITE DI TRANSITO TERNA vs FLUSSO FISICO ############
+  giorno  limite 11-15  flusso 11-15  flusso/limite  
+  16/10   1624          2338          144%           
+  17/10   1246          1697          136%           
+  18/10   1533          1996          130%           
+
+  Nei 21 quarti d'ora col prezzo Sud a zero:
+    limite medio       : 1636 MW
+    flusso fisico medio: 2316 MW (142% del limite)
+    massimo flusso     : 2856 MW (limite minimo 1510 MW)
+
+  Dettaglio 16/10, ora per ora (MW):
+  ora        limite       flusso flusso/limite
+  00:00        1312         1804       138%
+  01:00        1312         2134       163%
+  02:00        1300         2201       169%
+  03:00        1300         2137       164%
+  04:00        1245         2219       178%
+  05:00        1245         1901       153%
+  06:00        1356         2102       155%
+  07:00        1356         2760       204%
+  08:00        1645         3145       191%
+  09:00        1645         3377       205%
+  10:00        1510         2734       181%
+  11:00        1510         2550       169%
+  12:00        1649         2450       149%
+  13:00        1649         2312       140%
+  14:00        1686         2039       121%
+  15:00        1686         1870       111%
+  16:00        1649         2468       150%
+  17:00        1649         2147       130%
+  18:00        1650         2026       123%
+  19:00        1650         1805       109%
+  20:00        1696         1918       113%
+  21:00        1696         1640        97%
+  22:00        1644         1717       104%
+  23:00        1644         1695       103%
+
+############ D) BILANCIO DELLA MACROZONA (MW) ############
+  giorno  surplus  uscite  entrate  netto  non uscito  
+  16/10   3645     2830    0        2830   815         
+  17/10   1796     1793    493      1300   496         
+  18/10   2045     2078    0        2078   -32         
+
+  'surplus'    = generazione - carico della macrozona Sud
+  'uscite'     = flussi lordi in uscita dai tre confini esterni
+                 (Centro-Sud, Grecia, Malta)
+  'entrate'    = flussi lordi in entrata dagli stessi tre confini
+  'netto'      = uscite - entrate
+  'non uscito' = surplus - netto
+  il saldo interno e lo scambio netto coincidono salvo le perdite
+  di rete, il pompaggio e le differenze di misura.
+
+############ E) UTILIZZO DI OGNI VIA D'USCITA (16/10, 11:00-15:00) ############
+  via                      limite Terna  flusso medio  utilizzo medio  utilizzo max  
+  IT Sud -> IT Centro-Sud  2400          2338          92%             113%          
+  IT Sud -> Greece         500           414           83%             100%          
+  IT Sicilia -> Malta      225           78            34%             42%           
+
+  il limite e' quello dichiarato da Terna per ciascuna interfaccia;
+  100% = interfaccia satura.
+
+Immagine salvata: C:\Users\Utente\Desktop\opencode CLI\github\entsoe-repo\log\15_grafici_2026-11-12_00-40-02.png
+
+=== FINE ===

@@ -38,10 +38,12 @@ ENDPOINT = "https://dati.terna.it/api/sitecore/dati/downloadcenter/records"
 SERIES = [
     ("final", "MGPTransitLimit", "final_transit_limit"),
     ("forecast", "ForecastTransitLimit", "forecast_transit_limit"),
-    ("margin", "TransitMargins", "transit_margin"),
+    ("margin", "TransitMargins", "margin"),
 ]
 
-PAGE_SIZE = 10000
+#: the portal caps the answer at 10 000 rows, which truncates the margins of a
+#: whole month; a larger page size returns the complete series.
+PAGE_SIZE = 50000
 
 
 def download(dataset: str, zone_from: str, zone_to: str, year: int, month: int) -> bytes:
@@ -119,22 +121,30 @@ def parse_xlsx(content: bytes, label: str, zone_from: str, zone_to: str) -> list
     return parsed
 
 
-def build_csv(path: str, borders: list[tuple[str, str, str]], year: int, month: int) -> int:
+def build_csv(path: str, borders: list[tuple], year: int, month: int) -> int:
     """Download every border/series combination and store one long-format CSV.
+
+    Each border is a tuple ``(label, zone_from, zone_to)``; an optional fourth
+    element restricts the series to download for that border (by key: ``final``,
+    ``forecast``, ``margin``). Without it every series is downloaded.
 
     Returns the number of rows written.
     """
     rows: list[tuple] = []
-    for title, zone_from, zone_to in borders:
-        for key, dataset, label in SERIES:
+    for border in borders:
+        label, zone_from, zone_to = border[0], border[1], border[2]
+        chiavi = border[3] if len(border) > 3 else [key for key, _, _ in SERIES]
+        for key, dataset, lab in SERIES:
+            if key not in chiavi:
+                continue
             try:
                 content = download(dataset, zone_from, zone_to, year, month)
             except Exception as error:                      # noqa: BLE001
-                print(f"  {title} / {key}: not downloaded ({error})")
+                print(f"  {label} / {key}: not downloaded ({error})")
                 continue
-            parsed = parse_xlsx(content, label, zone_from, zone_to)
+            parsed = parse_xlsx(content, lab, zone_from, zone_to)
             rows.extend(parsed)
-            print(f"  {title} / {key}: {len(parsed)} values")
+            print(f"  {label} / {key}: {len(parsed)} values")
     with open(path, "w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
         writer.writerow(["series", "timestamp_local", "zone_from", "zone_to", "value_mw"])

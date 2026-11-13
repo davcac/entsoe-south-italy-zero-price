@@ -1,13 +1,14 @@
 # Why did the Italian day-ahead price go to zero in the South on 16 October 2026?
 
-**Short answer:** because Southern Italy was long by ~3.6 GW at midday, and the only
-transmission corridor that can move that power towards the rest of the country was
-full. The Sud → Centro-Sud corridor was running at **92 % of its Terna transit limit**
-(105–113 % in some quarter-hours) exactly when the sun and the wind were producing
-7.0 GW in a zone that could only export 2.8 GW. The surplus could not leave, so the
-marginal unit in the South was free energy, and the zonal price fell to the market
-floor: **0.00 EUR/MWh for 21 consecutive quarter-hours (10:30 – 15:30, Italian time)**,
-while the rest of Italy was priced at ~199 EUR/MWh at the same moment.
+**Short answer:** because Southern Italy was long by ~3.6 GW at midday, and the power
+had nowhere to go: the Sud → Centro-Sud corridor was running at **92 % of its Terna
+transit limit** (105–113 % in some quarter-hours), the 500 MW link to Greece was at
+**100 %**, and the third way out, Malta, is a 225 MW link. Exactly when the sun and
+the wind were producing 7.0 GW in a zone that could only export 2.8 GW, the surplus
+could not leave, so the marginal unit in the South was free energy, and the zonal
+price fell to the market floor: **0.00 EUR/MWh for 21 consecutive quarter-hours
+(10:30 – 15:30, Italian time)**, while the rest of Italy was priced at ~199 EUR/MWh
+at the same moment.
 
 | | |
 |---|---|
@@ -16,7 +17,7 @@ while the rest of Italy was priced at ~199 EUR/MWh at the same moment.
 | **Duration** | 21 quarter-hours (10:30 → 15:30 CEST), 17 of them at exactly 0.00 EUR/MWh |
 | **Rest of Italy, same midday** | IT Nord / Centro-Nord / Centro-Sud ≈ 198.90 EUR/MWh |
 | **Southern surplus (11:00–15:00)** | +3 645 MW (solar 4 242 MW + wind 2 790 MW against a load of 4 530 MW) |
-| **Corridor utilisation** | Sud → Centro-Sud: 2 338 MW against a 2 550 MW limit (92 %) |
+| **Corridor utilisation** | Sud → Centro-Sud: 2 338 MW against a 2 550 MW limit (92 %); Sud → Greece: 414 MW against a 500 MW limit (83 %) |
 | **Power that could not leave** | ≈ 815 MW (surplus 3 645 MW − exports 2 830 MW) |
 | **Control group** | Greece 11.00, France 179.33, Austria 192.09, Slovenia 187.36 EUR/MWh (11:00–15:00) |
 
@@ -84,18 +85,29 @@ The 16th is the only day of the three with meaningful wind (**2 790 MW against 2
 the day after**). Solar was basically identical on both days. The surplus on the 16th
 was therefore about twice the surplus on the 17th.
 
-### 2.2 Only one corridor connects the South to the rest of Italy
+### 2.2 Three borders, and two of them were already full
 
-The southern macro-zone can export through three borders only:
+The southern macro-zone can export through three borders only. Terna declares a
+transit limit for each of them, and on 16 October two of the three were at that
+limit:
 
-| border | 16 Oct, 11:00–15:00 average (MW) |
-|---|---:|
-| IT Sud → IT Centro-Sud | **2 338** |
-| IT Sud → Greece | 414 |
-| IT Sicilia → Malta | 78 |
-| **total exports** | **2 830** |
-| surplus | 3 645 |
-| **difference (could not leave)** | **815** |
+| border | limit declared by Terna (MW) | flow, 16 Oct 11:00–15:00 avg (MW) | utilisation, avg | utilisation, max |
+|---|---:|---:|---:|---:|
+| IT Sud → IT Centro-Sud | 2 400 – 2 700 | **2 338** | 92 % | **113 %** |
+| IT Sud → Greece | **500** | 414 | 83 % | **100 %** |
+| IT Sicilia → Malta | 225 | 78 | 34 % | 42 % |
+| **total exports** | 3 125 – 3 425 | **2 830** | | |
+| surplus | | 3 645 | | |
+| **difference (could not leave)** | | **815** | | |
+
+The export to Greece is what a single-corridor chart hides: the interconnection
+with Greece is rated at 500 MW, and on 16 October it carried 414 MW on average and
+reached 502 MW at 14:00 — at the limit. The surplus did not stay away from
+Greece; it filled Greece too. The only interface with room left was Malta, a
+225 MW link: at most about 130 MW more could have left that way. Over the midday
+window the three interfaces could carry at most 3 125 MW — the corridor limit is
+at its lowest exactly at noon — against a surplus of 3 645 MW, so **at least
+520 MW could not leave at all**.
 
 Sicily and Calabria are also cut off from the mainland: on the Sud ↔ Calabria border
 ENTSO-E records two outage declarations (A78) covering the whole event — one for
@@ -193,8 +205,8 @@ is decided by the transmission constraint, not by the balance of the country.**
   reconstructed).
 * **Flow direction.** ENTSO-E publishes one document per direction and each one
   carries a value only while the flow actually runs that way; the net flow is
-  `f(forward) − f(backward)`. The Greece and Malta borders are published with an
-  hourly resolution, the Italian internal borders at 15 minutes.
+  `f(forward) − f(backward)`. The Greece border is published with an hourly
+  resolution, the Italian internal borders and Sicily ↔ Malta at 15 minutes.
 * **The transit limit is an hourly value** and is applied to every quarter-hour of
   that hour; the comparison with the physical flow is therefore made between the
   hourly limit and the hourly average of the flow (the peak quarter-hour of the
@@ -238,8 +250,8 @@ figure and every number in this README can be checked without credentials.
 |---|---|
 | `src/entsoe.py` | ENTSO-E Transparency Platform client: prices (A44), load (A65), generation (A75), cross-border flows (A11), grid outages (A78). Handles the sparse `A03` curves and never logs the token. |
 | `src/download.py` | Fetches every raw document (ENTSO-E + Terna) into `raw/`. |
-| `src/terna_limits.py` | Terna transit limits (final / forecast / margins) from the public download centre — no API key. |
-| `src/build_dataset.py` | Turns the raw XML/XLSX into the five CSV files in `data/`. |
+| `src/terna_limits.py` | Terna transit limits (final / forecast / margins) for the five interfaces of the macro-zone, from the public download centre - no API key. |
+| `src/build_dataset.py` | Turns the raw XML/XLSX into the six CSV files in `data/`, including the gross flow of every border direction. |
 | `src/analysis.py` | The diagnostics: zero-price window, generation mix, corridor utilisation, export balance, price-vs-surplus threshold, control group. Prints every number quoted above. |
 | `src/figures.py` | The five charts. |
 
@@ -257,6 +269,13 @@ the code that produced it. The notebook stays as it is, because it shows how the
 question was actually investigated — which scripts failed, what ENTSO-E answered
 back, in what order — and the numbers it printed are the ones that were
 cross-checked against `src/analysis.py`.
+
+Script 15 was later corrected: it now reads the published dataset in `data/`
+instead of the raw ENTSO-E documents, so anyone cloning the repository can
+regenerate its chart with `python 15_grafici.py`. The correction matters — drawing
+only the Sud → Centro-Sud corridor against the surplus of the macro-zone made the
+chart show 1 307 MW of power that could not leave, while the real figure is
+815 MW: Greece and Malta were missing.
 
 ```
 ├── 01…16 script            the notebook, in order

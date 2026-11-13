@@ -1,14 +1,14 @@
 # Perché il prezzo del mercato del giorno prima è andato a zero nel Sud Italia il 16 ottobre 2026?
 
 **In sintesi:** perché il mezzogiorno del 16 ottobre il Sud Italia era in surplus
-per circa 3,6 GW, e l'unico corridoio di trasmissione in grado di spostare quella
-potenza verso il resto del Paese era pieno. Il corridoio Sud → Centro-Sud girava
-al **92 % del limite di transito di Terna** (105–113 % in alcuni quarti d'ora)
-proprio quando sole e vento producevano 7,0 GW in una zona che poteva esportarne
-solo 2,8 GW. Il surplus non poteva uscire, quindi l'unità marginale del Sud era
-energia gratis e il prezzo zonale è sceso al minimo di mercato: **0,00 EUR/MWh per
-21 quarti d'ora consecutivi (10:30 – 15:30, ora italiana)**, mentre nello stesso
-momento il resto d'Italia valeva circa 199 EUR/MWh.
+per circa 3,6 GW, e la potenza non aveva dove andare: il corridoio Sud → Centro-Sud
+girava al **92 % del limite di transito di Terna** (105–113 % in alcuni quarti d'ora),
+il collegamento da 500 MW con la Grecia era al **100 %**, e la terza via d'uscita,
+Malta, è un collegamento da 225 MW. Proprio quando sole e vento producevano 7,0 GW in
+una zona che poteva esportarne solo 2,8 GW, il surplus non poteva uscire, quindi
+l'unità marginale del Sud era energia gratis e il prezzo zonale è sceso al minimo di
+mercato: **0,00 EUR/MWh per 21 quarti d'ora consecutivi (10:30 – 15:30, ora
+italiana)**, mentre nello stesso momento il resto d'Italia valeva circa 199 EUR/MWh.
 
 | | |
 |---|---|
@@ -17,7 +17,7 @@ momento il resto d'Italia valeva circa 199 EUR/MWh.
 | **Durata** | 21 quarti d'ora (10:30 → 15:30 CEST), di cui 17 a esattamente 0,00 EUR/MWh |
 | **Resto d'Italia, stesso mezzogiorno** | IT Nord / Centro-Nord / Centro-Sud ≈ 198,90 EUR/MWh |
 | **Surplus del Sud (11:00–15:00)** | +3 645 MW (solare 4 242 MW + eolico 2 790 MW su un carico di 4 530 MW) |
-| **Utilizzo del corridoio** | Sud → Centro-Sud: 2 338 MW contro un limite di 2 550 MW (92 %) |
+| **Utilizzo del corridoio** | Sud → Centro-Sud: 2 338 MW contro un limite di 2 550 MW (92 %); Sud → Grecia: 414 MW contro un limite di 500 MW (83 %) |
 | **Potenza che non poteva uscire** | ≈ 815 MW (surplus 3 645 MW − esportazioni 2 830 MW) |
 | **Controllo** | Grecia 11,00, Francia 179,33, Austria 192,09, Slovenia 187,36 EUR/MWh (11:00–15:00) |
 
@@ -84,18 +84,30 @@ Il 16 è l'unico dei tre giorni con vento vero (**2 790 MW contro i 253 MW del g
 dopo**); il solare era praticamente identico. Per questo il surplus del 16 era
 circa il doppio di quello del 17.
 
-### 2.2 Un solo corridoio collega il Sud al resto d'Italia
+### 2.2 Tre confini, e due erano già pieni
 
-La macrozona meridionale può esportare attraverso tre soli confini:
+La macrozona meridionale può esportare attraverso tre soli confini. Terna dichiara
+per ciascuno un limite di transito, e il 16 ottobre due dei tre erano a quel
+limite:
 
-| confine | 16 ott, media 11:00–15:00 (MW) |
-|---|---:|
-| IT Sud → IT Centro-Sud | **2 338** |
-| IT Sud → Grecia | 414 |
-| IT Sicilia → Malta | 78 |
-| **esportazioni totali** | **2 830** |
-| surplus | 3 645 |
-| **differenza (non esportabile)** | **815** |
+| confine | limite dichiarato da Terna (MW) | flusso, 16 ott, media 11:00–15:00 (MW) | utilizzo, medio | utilizzo, max |
+|---|---:|---:|---:|---:|
+| IT Sud → IT Centro-Sud | 2 400 – 2 700 | **2 338** | 92 % | **113 %** |
+| IT Sud → Grecia | **500** | 414 | 83 % | **100 %** |
+| IT Sicilia → Malta | 225 | 78 | 34 % | 42 % |
+| **esportazioni totali** | 3 125 – 3 425 | **2 830** | | |
+| surplus | | 3 645 | | |
+| **differenza (non esportabile)** | | **815** | | |
+
+L'esportazione verso la Grecia è ciò che un grafico a un solo corridoio nasconde:
+l'interconnessione con la Grecia ha una capacità di 500 MW, e il 16 ottobre ha
+portato in media 414 MW arrivando a 502 MW alle 14:00, cioè al limite. Il surplus
+non è rimasto lontano dalla Grecia; ha riempito anche la Grecia. L'unica
+interfaccia con spazio era Malta, un collegamento da 225 MW: da lì potevano uscire
+al massimo circa 130 MW in più. Sulla finestra di mezzogiorno le tre interfacce
+potevano portare al massimo 3 125 MW — il limite del corridoio è al suo minimo
+proprio a mezzogiorno — contro un surplus di 3 645 MW: **almeno 520 MW non
+potevano uscire comunque**.
 
 Sicilia e Calabria sono a loro volta staccate dalla penisola: sul confine Sud ↔
 Calabria ENTSO-E registra due dichiarazioni di indisponibilità (A78) che coprono
@@ -190,8 +202,8 @@ il prezzo lo decide il vincolo di trasmissione, non il saldo del Paese.**
   sono stati ricostruiti).
 * **Direzione dei flussi.** ENTSO-E pubblica un documento per direzione e ognuno
   riporta un valore solo mentre il flusso procede davvero in quella direzione; il
-  flusso netto è `f(avanti) − f(indietro)`. I confini Grecia e Malta sono
-  pubblicati con risoluzione oraria, quelli interni italiani a 15 minuti.
+  flusso netto è `f(avanti) − f(indietro)`. Il confine Grecia è pubblicato con
+  risoluzione oraria, quelli interni italiani e Sicilia ↔ Malta a 15 minuti.
 * **Il limite di transito è un dato orario** e vale per tutti i quarti d'ora
   dell'ora; il confronto con il flusso fisico è quindi fatto tra il limite orario e
   la media oraria del flusso (il picco di quarto d'ora della stessa ora è riportato
@@ -235,8 +247,8 @@ credenziali.
 |---|---|
 | `src/entsoe.py` | client della piattaforma di trasparenza ENTSO-E: prezzi (A44), carico (A65), generazione (A75), flussi transfrontalieri (A11), indisponibilità (A78). Gestisce le curve rade `A03` e non stampa mai il token. |
 | `src/download.py` | scarica tutti i documenti grezzi (ENTSO-E + Terna) in `raw/`. |
-| `src/terna_limits.py` | limiti di transito di Terna (definitivi / provvisori / margini) dal portale pubblico — senza chiave API. |
-| `src/build_dataset.py` | trasforma XML/XLSX grezzi nei cinque CSV di `data/`. |
+| `src/terna_limits.py` | limiti di transito di Terna (definitivi / provvisori / margini) per le cinque interfacce della macrozona, dal portale pubblico - senza chiave API. |
+| `src/build_dataset.py` | trasforma XML/XLSX grezzi nei sei CSV di `data/`, incluso il flusso lordo di ogni direzione di confine. |
 | `src/analysis.py` | la diagnostica: finestra a prezzo zero, mix generativo, utilizzo del corridoio, bilancio delle esportazioni, soglia prezzo/surplus, gruppo di controllo. Stampa ogni numero citato sopra. |
 | `src/figures.py` | i cinque grafici. |
 
@@ -244,7 +256,7 @@ credenziali.
 
 In **radice** ci sono i sedici script del primo giro esplorativo (`01_api_basics_ecb.py`
 → `16_limiti_transito.py`), da "come si legge una chiave API senza stamparla" al
-"disegno il tetto di transito sopra il flusso fisico". I loro output sono in
+"disegno il limite di transito sopra il flusso fisico". I loro output sono in
 [`log/`](log): i report di testo (che si leggono senza eseguire nulla), i dati
 grezzi e i grafici.
 
@@ -254,6 +266,13 @@ questo file stampato dal codice che lo ha prodotto. Il quaderno resta com'è,
 perché mostra come la domanda è stata davvero indagata — quali script fallivano,
 che cosa rispondeva ENTSO-E, in che ordine — e i numeri che ha stampato sono
 quelli verificati uno a uno contro `src/analysis.py`.
+
+Lo script 15 è stato corretto in seguito: ora legge il dataset pubblicato in `data/`
+invece dei documenti grezzi di ENTSO-E, così chi clona il repository può rigenerare
+il suo grafico con `python 15_grafici.py`. La correzione conta: disegnando solo il
+corridoio Sud → Centro-Sud contro il surplus della macrozona il grafico mostrava
+1 307 MW di potenza che non poteva uscire, mentre il numero giusto è 815 MW: mancavano
+Grecia e Malta.
 
 ```
 ├── 01…16 script            il quaderno, in ordine

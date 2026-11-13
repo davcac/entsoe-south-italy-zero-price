@@ -110,7 +110,17 @@ def main() -> None:
     csv_path = os.path.join(args.out, "transit_limits.csv")
     rows = terna_limits.build_csv(
         csv_path,
-        [("Sud -> Centro-Sud", "South", "Centre-South")],
+        [
+            # The corridor the analysis focuses on: every series, margins included.
+            ("Sud -> Centro-Sud", "South", "Centre-South"),
+            # The other interfaces of the macro-zone: the final limit is enough.
+            # "Greece 2" is the physical interconnection (500 MW); "Greece" is the
+            # commercial coupling point, whose limit is never binding.
+            ("Sud -> Greece", "South", "Greece 2", ["final"]),
+            ("Sicily -> Malta", "Sicily", "Malta", ["final"]),
+            ("South -> Calabria", "South", "Calabria", ["final"]),
+            ("Sicily -> Calabria", "Sicily", "Calabria", ["final"]),
+        ],
         year=start.year,
         month=start.month,
     )

@@ -14,8 +14,9 @@ day of history).
 | `day_ahead_prices.csv` | 3 744 | day-ahead prices of the 7 Italian zones and 6 neighbouring countries, 15-minute resolution | ENTSO-E **A44** |
 | `load_generation.csv` | 29 184 | load and generation per zone, split by technology (solar / wind / hydro / gas / other) | ENTSO-E **A65**, **A75** |
 | `cross_border_flows.csv` | 1 632 | net physical flows on the five borders that matter, in one canonical direction per border | ENTSO-E **A11** |
+| `cross_border_flows_directional.csv` | 3 264 | gross physical flows, one row per published direction: export and import kept apart | ENTSO-E **A11** |
 | `grid_unavailability.csv` | 2 | outage declarations on the transmission grid (IT Sud ↔ IT Calabria) | ENTSO-E **A78** |
-| `transit_limits.csv` | 7 016 | transit limits between the Sud and Centro-Sud zones, hourly: final, forecast and post-session margins | Terna, download centre |
+| `transit_limits.csv` | 14 650 | transit limits declared by Terna, hourly: final limits for the five interfaces of the macro-zone, plus forecast and post-session margins for the Sud ↔ Centro-Sud corridor | Terna, download centre |
 
 ## Conventions
 
@@ -30,7 +31,15 @@ day of history).
   ENTSO-E publishes one document per direction and each document carries a value
   only while the flow actually runs that way, so the net flow is
   `f(forward) − f(backward)`.
-* **Transit limits** are MW, one value per hour, in Italian local time.
+* **Directional flows.** `cross_border_flows_directional.csv` keeps the two sides
+  of every border apart: one row per direction ENTSO-E publishes, with the gross
+  flow that really went in that direction (zeros included). The net of the two
+  directions of a border is exactly the value stored in
+  `cross_border_flows.csv` — the two files are verified against each other.
+* **Transit limits** are MW, one value per hour, in Italian local time. The zone
+  names are Terna's own: `South`, `Centre-South`, `Calabria`, `Sicily`, `Malta`,
+  `Greece 2`. **`Greece 2` is the physical interconnection** with Greece (500 MW);
+  `Greece` is the commercial coupling point, whose limit (10 000 MW) never binds.
 
 ## Two traps worth knowing about
 
@@ -38,9 +47,9 @@ day of history).
    its value changes; the omitted positions repeat the previous one. Between 10
    and 29 quarter-hours per zone had to be reconstructed here. `src/entsoe.py`
    does it; skipping it shifts every timestamp and biases every average.
-2. **Different resolutions on the same border.** The Italy ↔ Greece and
-   Sicily ↔ Malta interconnectors are published with an **hourly** resolution,
-   the Italian internal borders with 15 minutes.
+2. **Different resolutions on the same border.** The Italy ↔ Greece interconnectors
+   are published with an **hourly** resolution, the Italian internal borders and
+   Sicily ↔ Malta with 15 minutes.
 
 ## Licences
 

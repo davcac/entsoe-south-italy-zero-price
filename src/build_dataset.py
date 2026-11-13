@@ -15,6 +15,8 @@ Output (a ``data/`` folder, versioned):
 * ``day_ahead_prices.csv``   -- zone, timestamp_utc, timestamp_local, price_eur_mwh
 * ``load_generation.csv``    -- zone, source, timestamp_utc, timestamp_local, mw
 * ``cross_border_flows.csv`` -- border, timestamp_utc, timestamp_local, flow_mw
+* ``cross_border_flows_directional.csv``
+                                -- gross flow, one row per published direction
 * ``grid_unavailability.csv`` -- outage records declared on the transmission grid
 * ``transit_limits.csv``     -- Terna final/forecast transit limits per hour
 
@@ -23,6 +25,12 @@ the value is the **net** flow in that direction (positive = along the label).
 ENTSO-E publishes one file per direction and each file only carries the value
 while the flow actually runs that way, so the net flow is
 ``f(forward) - f(backward)``.
+
+``cross_border_flows_directional.csv`` keeps the two sides apart: one row for
+every direction ENTSO-E publishes, with the **gross** flow that really went
+in that direction (zeros included). The net of the two directions of a border
+is exactly the value stored in ``cross_border_flows.csv``, so the directional
+file is the one to use when the export and the import have to be told apart.
 """
 
 from __future__ import annotations
@@ -193,6 +201,38 @@ def build_flows(raw_dir: str, out_dir: str) -> int:
     return len(rows)
 
 
+def build_directional_flows(raw_dir: str, out_dir: str) -> int:
+    """Gross flow for every direction ENTSO-E publishes, per border.
+
+    ENTSO-E publishes one document per direction and writes a value only
+    while the flow actually runs that way (zeros elsewhere), so each row
+    here is the physical flow that really went in that direction.
+    ``cross_border_flows.csv`` is the net of the two directions of a border.
+    """
+    files = latest_batch(pick(raw_dir, ["A11_*.xml", "12_A11_*.xml"]))
+    rows = []
+    for path in files:
+        root = entsoe.ET.parse(path).getroot()
+        origin = destination = ""
+        for node in entsoe.descendants(root, "TimeSeries"):
+            origin = (entsoe.text_of(node, "out_Domain.mRID") or "").strip()
+            destination = (entsoe.text_of(node, "in_Domain.mRID") or "").strip()
+            break
+        if not origin or not destination:
+            continue
+        label = (f"{EIC_TO_NAME.get(origin, origin)}"
+                 f" -> {EIC_TO_NAME.get(destination, destination)}")
+        for instant, value in entsoe.parse_flow(path).items():
+            rows.append([label, utc(instant), local(instant), f"{value:.1f}"])
+    rows.sort(key=lambda row: (row[0], row[1]))
+    path = os.path.join(out_dir, "cross_border_flows_directional.csv")
+    with open(path, "w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["border", "timestamp_utc", "timestamp_local", "flow_mw"])
+        writer.writerows(rows)
+    return len(rows)
+
+
 def build_unavailability(raw_dir: str, out_dir: str) -> int:
     rows = []
     for path in pick(raw_dir, ["A78_*.xml", "12_A78_*.xml"]):
@@ -224,9 +264,16 @@ def build_transit_limits(raw_dir: str, out_dir: str) -> int:
     rows = []
     with open(source[-1], encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
-            when = datetime.strptime(row["data_ora"], "%Y-%m-%d %H:%M")
-            rows.append([canonical_series(row["serie"]), when.strftime("%Y-%m-%d %H:%M"),
-                         row["zona_da"], row["zona_a"], row["valore_MW"]])
+            if "serie" in row:
+                # legacy layout of the exploratory script 16
+                when = datetime.strptime(row["data_ora"], "%Y-%m-%d %H:%M")
+                rows.append([canonical_series(row["serie"]),
+                             when.strftime("%Y-%m-%d %H:%M"),
+                             row["zona_da"], row["zona_a"], row["valore_MW"]])
+            else:
+                # layout written by src/terna_limits.py
+                rows.append([canonical_series(row["series"]), row["timestamp_local"],
+                             row["zone_from"], row["zone_to"], row["value_mw"]])
     rows.sort(key=lambda row: (row[0], row[1]))
     path = os.path.join(out_dir, "transit_limits.csv")
     with open(path, "w", newline="", encoding="utf-8") as handle:
@@ -249,6 +296,7 @@ def main() -> None:
         ("day_ahead_prices.csv", build_prices),
         ("load_generation.csv", build_load_generation),
         ("cross_border_flows.csv", build_flows),
+        ("cross_border_flows_directional.csv", build_directional_flows),
         ("grid_unavailability.csv", build_unavailability),
         ("transit_limits.csv", build_transit_limits),
     ):

@@ -19,3 +19,7 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Documentazione di terze parti tenuta come riferimento, non pubblicata:
+# il glossario dei termini del Codice di Rete di Terna.
+20210525 Glossario dei termini Codice di Rete.pdf
