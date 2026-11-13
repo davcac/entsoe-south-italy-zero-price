@@ -2,7 +2,7 @@
 
 **Short answer:** because Southern Italy was long by ~3.6 GW at midday, and the power
 had nowhere to go: the Sud → Centro-Sud corridor was running at **92 % of its Terna
-transit limit** (105–113 % in some quarter-hours), the 500 MW link to Greece was at
+transit limit** (104–113 % in some quarter-hours), the 500 MW link to Greece was at
 **100 %**, and the third way out, Malta, is a 225 MW link. Exactly when the sun and
 the wind were producing 7.0 GW in a zone that could only export 2.8 GW, the surplus
 could not leave, so the marginal unit in the South was free energy, and the zonal
@@ -14,7 +14,7 @@ at the same moment.
 |---|---|
 | **Event** | Friday 16 October 2026, Italian day-ahead market (MGP) |
 | **Affected zones** | IT Sud, IT Calabria, IT Sicilia |
-| **Duration** | 21 quarter-hours (10:30 → 15:30 CEST), 17 of them at exactly 0.00 EUR/MWh |
+| **Duration** | 21 quarter-hours (10:30 → 15:30 CEST), 18 of them at exactly 0.00 EUR/MWh |
 | **Rest of Italy, same midday** | IT Nord / Centro-Nord / Centro-Sud ≈ 198.90 EUR/MWh |
 | **Southern surplus (11:00–15:00)** | +3 645 MW (solar 4 242 MW + wind 2 790 MW against a load of 4 530 MW) |
 | **Corridor utilisation** | Sud → Centro-Sud: 2 338 MW against a 2 550 MW limit (92 %); Sud → Greece: 414 MW against a 500 MW limit (83 %) |

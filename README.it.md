@@ -2,7 +2,7 @@
 
 **In sintesi:** perché il mezzogiorno del 16 ottobre il Sud Italia era in surplus
 per circa 3,6 GW, e la potenza non aveva dove andare: il corridoio Sud → Centro-Sud
-girava al **92 % del limite di transito di Terna** (105–113 % in alcuni quarti d'ora),
+girava al **92 % del limite di transito di Terna** (104–113 % in alcuni quarti d'ora),
 il collegamento da 500 MW con la Grecia era al **100 %**, e la terza via d'uscita,
 Malta, è un collegamento da 225 MW. Proprio quando sole e vento producevano 7,0 GW in
 una zona che poteva esportarne solo 2,8 GW, il surplus non poteva uscire, quindi
@@ -14,7 +14,7 @@ italiana)**, mentre nello stesso momento il resto d'Italia valeva circa 199 EUR/
 |---|---|
 | **Evento** | venerdì 16 ottobre 2026, mercato del giorno prima (MGP) |
 | **Zone interessate** | IT Sud, IT Calabria, IT Sicilia |
-| **Durata** | 21 quarti d'ora (10:30 → 15:30 CEST), di cui 17 a esattamente 0,00 EUR/MWh |
+| **Durata** | 21 quarti d'ora (10:30 → 15:30 CEST), di cui 18 a esattamente 0,00 EUR/MWh |
 | **Resto d'Italia, stesso mezzogiorno** | IT Nord / Centro-Nord / Centro-Sud ≈ 198,90 EUR/MWh |
 | **Surplus del Sud (11:00–15:00)** | +3 645 MW (solare 4 242 MW + eolico 2 790 MW su un carico di 4 530 MW) |
 | **Utilizzo del corridoio** | Sud → Centro-Sud: 2 338 MW contro un limite di 2 550 MW (92 %); Sud → Grecia: 414 MW contro un limite di 500 MW (83 %) |

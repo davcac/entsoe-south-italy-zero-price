@@ -27,6 +27,15 @@ NEIGHBOURS = ["Greece", "France", "Austria", "Slovenia", "Switzerland", "Montene
 EVENT_DAY = "2026-10-16"
 CONTROL_DAYS = ["2026-10-16", "2026-10-17", "2026-10-18"]
 CORRIDOR = "IT Sud -> IT Centro-Sud"
+#: The three interfaces through which the southern macro-zone can export, and
+#: the pair of zones Terna uses to name them in its limit tables. "Greece 2" is
+#: the physical interconnection with Greece (500 MW); "Greece" is the
+#: commercial coupling point, whose limit (10 000 MW) never binds.
+EXPORT_BORDERS = {
+    CORRIDOR: ("South", "Centre-South"),
+    "IT Sud -> Greece": ("South", "Greece 2"),
+    "IT Sicilia -> Malta": ("Sicily", "Malta"),
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -34,13 +43,14 @@ CORRIDOR = "IT Sud -> IT Centro-Sud"
 # --------------------------------------------------------------------------- #
 
 class Dataset:
-    """The five CSV tables, indexed by time (Italian local time)."""
+    """The six CSV tables, indexed by time (Italian local time)."""
 
     def __init__(self, folder: str = DATA):
         self.prices = self._read(folder, "day_ahead_prices.csv", "zone", "price_eur_mwh")
         self.load_gen = self._read(folder, "load_generation.csv", ["zone", "source"], "mw", agg="sum")
         self.flows = self._read(folder, "cross_border_flows.csv", "border", "flow_mw")
-        self.limits = self._read_local(folder, "transit_limits.csv", "series", "value_mw")
+        self.limits = self._read_local(folder, "transit_limits.csv",
+                                      ["series", "zone_from", "zone_to"], "value_mw")
         self.outages = pd.read_csv(os.path.join(folder, "grid_unavailability.csv"))
 
     @staticmethod
@@ -52,10 +62,20 @@ class Dataset:
 
     @staticmethod
     def _read_local(folder: str, name: str, by, value: str) -> pd.DataFrame:
-        """Terna tables are published in Italian local time."""
+        """Terna tables are published in Italian local time.
+
+        Terna writes wall-clock time, so the hour that happens twice on the day
+        the clocks go back (last Sunday of October) is ambiguous: it cannot be
+        turned into an instant without knowing the offset. Those rows are
+        dropped -- they are far outside the analysis window -- instead of being
+        given a guess. The pivot keeps the border apart from the series, so the
+        limit of one interface is never mixed with the limit of another.
+        """
         path = os.path.join(folder, name)
         frame = pd.read_csv(path, parse_dates=["timestamp_local"])
-        frame["t"] = frame["timestamp_local"].dt.tz_localize(ROME)
+        frame["t"] = frame["timestamp_local"].dt.tz_localize(
+            ROME, ambiguous="NaT", nonexistent="shift_forward")
+        frame = frame.dropna(subset=["t"])
         return frame.pivot_table(index="t", columns=by, values=value, aggfunc="last")
 
     # -- helpers ----------------------------------------------------------- #
@@ -79,10 +99,20 @@ class Dataset:
     def flow(self, border: str) -> pd.Series:
         return self.flows[border]
 
-    def final_limit(self) -> pd.Series:
-        """Terna final transit limit on the Sud -> Centro-Sud corridor (MW)."""
+    def final_limit(self, border: str = CORRIDOR) -> pd.Series:
+        """Terna final transit limit on one border (MW).
+
+        The limit is an hourly value: it applies to every quarter-hour of the
+        hour it is published for. Each border has its own series, so the limit
+        of the corridor is never confused with the limit of another interface.
+        """
+        zone_from, zone_to = EXPORT_BORDERS[border]
         limits = self.limits["final_transit_limit"]
-        return limits.groupby(pd.Grouper(freq="h")).max()
+        column = (zone_from, zone_to)
+        if column not in limits.columns:
+            raise KeyError(f"no final transit limit published for {border} "
+                           f"({zone_from} -> {zone_to})")
+        return limits[column].groupby(pd.Grouper(freq="h")).max()
 
 
 def window(frame: pd.Series, day: str, hour_from: int = 11, hour_to: int = 15) -> pd.Series:
@@ -161,6 +191,54 @@ def export_balance(data: Dataset) -> pd.DataFrame:
                      **exports, "total_exports_mw": total,
                      "not_exported_mw": surplus - total})
     return pd.DataFrame(rows).set_index("day")
+
+
+def export_borders(data: Dataset, day: str = EVENT_DAY,
+                   hour_from: int = 11, hour_to: int = 15) -> pd.DataFrame:
+    """The three export interfaces of the macro-zone: Terna limit vs flow.
+
+    The limit is an hourly value and the flow a quarterly one (hourly on the
+    Greece border), so the average utilisation compares the average flow of the
+    window with the average limit of the same window, while the peak
+    utilisation compares the peak quarter-hour of an hour with the limit
+    published for that hour.
+    """
+    rows = {}
+    for border in EXPORT_BORDERS:
+        limit = window(data.final_limit(border), day, hour_from, hour_to)
+        flow = window(data.flow(border), day, hour_from, hour_to)
+        hourly_limit = limit.resample("h").max()
+        hourly_flow = flow.resample("h").mean()
+        hourly_peak = flow.resample("h").max()
+        rows[border] = {
+            "limit_min_mw": hourly_limit.min(),
+            "limit_max_mw": hourly_limit.max(),
+            "limit_avg_mw": hourly_limit.mean(),
+            "flow_avg_mw": hourly_flow.mean(),
+            "flow_peak_mw": hourly_peak.max(),
+            "flow_peak_at": hourly_peak.idxmax(),
+            "utilisation_avg": hourly_flow.mean() / hourly_limit.mean(),
+            "utilisation_max": (hourly_peak / hourly_limit).max(),
+            "headroom_mw": hourly_limit.max() - hourly_peak.max(),
+        }
+    return pd.DataFrame(rows).T
+
+
+def export_capacity(data: Dataset, day: str = EVENT_DAY,
+                    hour_from: int = 11, hour_to: int = 15) -> pd.DataFrame:
+    """How much the macro-zone could export, hour by hour, and what it could not.
+
+    The capacity is the sum of the Terna limits of the three interfaces: what
+    could not leave the macro-zone is the surplus minus that sum.
+    """
+    limits = pd.concat(
+        {border: window(data.final_limit(border), day, hour_from, hour_to)
+         for border in EXPORT_BORDERS}, axis=1)
+    capacity = limits.sum(axis=1, min_count=len(EXPORT_BORDERS))
+    surplus = window(data.macro_surplus(), day, hour_from, hour_to)
+    frame = pd.DataFrame({"capacity_mw": capacity, "surplus_mw": surplus})
+    frame["not_exported_mw"] = frame["surplus_mw"] - frame["capacity_mw"]
+    return frame
 
 
 def price_versus_surplus(data: Dataset) -> pd.DataFrame:
@@ -282,6 +360,22 @@ def report(data: Dataset) -> None:
     zero_limit = low["corridor_limit_mw"].mean()
     print(f"   during the zero-price quarter-hours: limit {zero_limit:.0f} MW | "
           f"flow {zero_flow:.0f} MW ({zero_flow / zero_limit * 100:.0f}% of the limit)")
+
+    print("\n3b) THE THREE INTERFACES OF THE MACRO-ZONE: TERNA LIMIT vs PHYSICAL FLOW")
+    for border, row in export_borders(data).iterrows():
+        print(f"   {border:26s} limit {row['limit_min_mw']:5.0f}-{row['limit_max_mw']:.0f} MW | "
+              f"flow {row['flow_avg_mw']:5.0f} MW | utilisation "
+              f"{row['utilisation_avg'] * 100:3.0f}% on average, "
+              f"{row['utilisation_max'] * 100:3.0f}% at peak")
+        print(f"   {'':26s} peak flow {row['flow_peak_mw']:.0f} MW at "
+              f"{row['flow_peak_at']:%H:%M} | headroom to the limit "
+              f"{row['headroom_mw']:+.0f} MW")
+    capacity = export_capacity(data)
+    surplus = capacity["surplus_mw"].mean()
+    print(f"   export capacity of the three interfaces: "
+          f"{capacity['capacity_mw'].min():.0f} - {capacity['capacity_mw'].max():.0f} MW")
+    print(f"   surplus {surplus:.0f} MW -> at least "
+          f"{surplus - capacity['capacity_mw'].min():.0f} MW could not leave the macro-zone")
 
     print("\n4) WHY THE SURPLUS COULD NOT LEAVE")
     balance = export_balance(data)
